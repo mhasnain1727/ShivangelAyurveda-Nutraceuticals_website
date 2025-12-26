@@ -103,6 +103,53 @@
     </div>
 
     <div class="hero__right">
+      <div class="hero-media">
+
+        <!-- MEDIA SLIDES -->
+        <div class="hero-media__slide" *ngFor="let media of heroMedia; let i = index"
+          [class.active]="i === activeMediaIndex">
+
+          <!-- IMAGE -->
+          <img *ngIf="media.type === 'image'" [src]="media.src" [alt]="media.alt" loading="lazy" (click)="openImage(media.src)" class="hero-media__img"/>
+
+          <!-- VIDEO -->
+           <video
+              *ngIf="media.type === 'video'"
+              #heroVideo
+              [src]="media.src"
+              muted
+              autoplay
+              playsinline
+              controls
+              class="hero-media__video"
+              (loadedmetadata)="onVideoLoaded(heroVideo)"
+            ></video>
+           <!-- <video
+              *ngIf="media.type === 'video'"
+              #heroVideo
+              [src]="media.src"
+              muted
+              autoplay
+              playsinline
+              controls
+              class="hero-media__video"
+              (loadedmetadata)="onVideoLoaded(heroVideo)"
+              (ended)="onVideoEnded()"
+            ></video> -->
+          <!-- <video *ngIf="media.type === 'video'" [src]="media.src" muted autoplay loop playsinline controls class="hero-media__video" (ended)="onVideoEnded()"></video> -->
+
+        </div>
+
+        <!-- OVERLAY BADGE -->
+        <div class="hero-media__badge">
+          ISO • GMP • AYUSH Certified
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- <div class="hero__right">
       <div class="hero__card">
         <div class="hero__card-header">
           <span class="hero__card-icon">🏭</span>
@@ -130,7 +177,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 
   <!-- SECTION: MANUFACTURING UNIT -->
@@ -586,4 +633,13 @@
       <a (click)="scrollTo('hero')">Back to top ↑</a>
     </div>
   </footer>
+</div>
+
+<!-- IMAGE FULLSCREEN DIALOG -->
+<div
+  class="image-modal"
+  *ngIf="isImageOpen"
+  (click)="closeImage()"
+>
+  <img [src]="activeImage" />
 </div>
