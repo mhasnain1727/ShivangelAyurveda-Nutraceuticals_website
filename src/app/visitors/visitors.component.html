@@ -1,0 +1,119 @@
+<div class="visitor-page">
+    <div class="visitor-card">
+        <!-- <button class="back-btn" routerLink="/home">← Back to Home</button> -->
+        <div class="visitor-header">
+            <span class="visitor-icon">📝</span>
+            <h2>Visitor Enquiry Form</h2>
+            <p>
+                Please fill in the details below and our team will get back to you shortly.
+            </p>
+        </div>
+
+        <form [formGroup]="visitorForm" (ngSubmit)="submit()" novalidate>
+
+            <div class="form-grid">
+
+                <!-- Full Name -->
+                <div class="form-field">
+                    <label>Full Name *</label>
+                    <input type="text" formControlName="fullName" placeholder="Enter your name" />
+                    <small *ngIf="submitted && visitorForm.controls['fullName'].invalid">
+                        Name is required
+                    </small>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-field">
+                    <label>Contact Number *</label>
+                    <input type="tel" formControlName="phone" maxlength="10" placeholder="10-digit mobile number" />
+                    <small *ngIf="submitted && visitorForm.controls['phone'].invalid">
+                        Valid phone number required
+                    </small>
+                </div>
+
+                <!-- Email -->
+                <div class="form-field">
+                    <label>Email Address</label>
+                    <input type="email" formControlName="email" placeholder="example@email.com" />
+                </div>
+
+                <!-- Company -->
+                <div class="form-field">
+                    <label>Company / Organization</label>
+                    <input type="text" formControlName="company" placeholder="Optional" />
+                </div>
+
+                <!-- Visitor Type -->
+                <div class="form-field">
+                    <label>Visitor Type</label>
+                    <select formControlName="visitorType">
+                        <option>Client</option>
+                        <option>Distributor</option>
+                        <option>Vendor</option>
+                        <option>Consultant</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <!-- Purpose -->
+                <div class="form-field">
+                    <label>Purpose of Contact *</label>
+                    <select formControlName="purpose">
+                        <option value="">Select purpose</option>
+                        <option *ngFor="let p of purposes">{{ p }}</option>
+                    </select>
+                    <small *ngIf="submitted && visitorForm.controls['purpose'].invalid">
+                        Please select a purpose
+                    </small>
+                </div>
+
+                <!-- Contact Preference -->
+                <div class="form-field">
+                    <label>Preferred Contact Method</label>
+                    <select formControlName="contactPreference">
+                        <option>Phone</option>
+                        <option>Email</option>
+                        <option>WhatsApp</option>
+                    </select>
+                </div>
+
+                <!-- Date -->
+                <div class="form-field">
+                    <label>Date</label>
+                    <input type="date" formControlName="visitDate" />
+                </div>
+
+                <!-- Message -->
+                <div class="form-field full-width">
+                    <label>Message *</label>
+                    <textarea rows="4" formControlName="message" placeholder="Write your message here..."></textarea>
+                    <small *ngIf="submitted && visitorForm.controls['message'].invalid">
+                        Minimum 10 characters required
+                    </small>
+                </div>
+
+                <!-- Consent -->
+                <div class="form-field full-width consent">
+                    <label>
+                        <input type="checkbox" formControlName="consent" />
+                        I agree to be contacted by Shivangel Ayurveda & Nutraceuticals
+                    </label>
+                    <small *ngIf="submitted && visitorForm.controls['consent'].invalid">
+                        Consent is required
+                    </small>
+                </div>
+
+            </div>
+
+            <!-- Submit -->
+            <div class="form-actions">
+                <button type="submit">Send Enquiry</button>
+            </div>
+
+        </form>
+        <button class="back-btn" routerLink="/">
+            ← Back to Home
+        </button>
+
+    </div>
+</div>
