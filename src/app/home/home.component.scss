@@ -553,11 +553,9 @@ body {
 }
 
 .card--glass {
-  background: linear-gradient(
-    135deg,
-    rgba(15, 23, 42, 0.25),
-    rgba(15, 23, 42, 0.05)
-  );
+  background: linear-gradient(135deg,
+      rgba(15, 23, 42, 0.25),
+      rgba(15, 23, 42, 0.05));
   border: 1px solid rgba(226, 232, 240, 0.5);
   color: #ecfdf5;
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.3);
@@ -788,8 +786,8 @@ body {
   text-decoration: none;
 }
 
-.black-color{
-    color: #020617;
+.black-color {
+  color: #020617;
 }
 
 /* RESPONSIVE */
@@ -1009,14 +1007,29 @@ body {
 }
 
 .visitor-card {
-//   background-color: var(--card-bg);
-//   border-radius: 1.2rem;
-//   padding: 2rem 2.2rem;
-//   border: 1px solid var(--border-subtle);
-//   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-//   max-width: 500px;
-//   margin: 0 auto;
-p {
+
+  //   background-color: var(--card-bg);
+  //   border-radius: 1.2rem;
+  //   padding: 2rem 2.2rem;
+  //   border: 1px solid var(--border-subtle);
+  //   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  //   max-width: 500px;
+  //   margin: 0 auto;
+  p {
     color: rgb(64, 138, 198) !important;
+  }
 }
+
+.admin-link {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  opacity: 0.55;
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.admin-link:hover {
+  opacity: 0.9;
+  text-decoration: underline;
 }

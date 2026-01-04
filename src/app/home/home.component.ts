@@ -94,8 +94,6 @@ export class HomeComponent implements OnInit {
 
     const media = this.heroMedia[this.activeMediaIndex];
 
-    console.log('Current media type:', media.type);
-    // if (media.type === 'image') {
     if (media.type === 'image') {
       this.slideTimeout = setTimeout(() => {
         this.goToNextSlide();
@@ -121,13 +119,6 @@ export class HomeComponent implements OnInit {
 
   /* FORCE mute + autoplay (browser safe) */
   onVideoLoaded(video: HTMLVideoElement): void {
-    // console.log('Video loaded, attempting to play with mute.', video);
-    // console.log('Video src:', video.src);
-    // if(video.src.includes('factory-view.mp4')){
-    //   console.log('Achievement video loaded.');
-    // } else {
-    //   console.log('Other video loaded.');
-    // }
     video.muted = true;
     video.loop = true;
     // video.volume = 0;
@@ -145,7 +136,6 @@ export class HomeComponent implements OnInit {
 
   /* VIDEO → next slide ONLY when ended */
   onVideoEnded(): void {
-    console.log('Video ended, moving to next slide.');
     this.goToNextSlide();
   }
 

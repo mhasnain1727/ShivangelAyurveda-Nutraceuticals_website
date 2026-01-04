@@ -1,10 +1,12 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-visitors',
   templateUrl: './visitors.component.html',
-  styleUrls: ['./visitors.component.scss']
+  styleUrls: ['./visitors.component.scss'],
+  providers: [DatePipe]
 })
 export class VisitorsComponent implements OnInit {
   visitorForm: FormGroup;
@@ -19,7 +21,10 @@ export class VisitorsComponent implements OnInit {
     'Other'
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private datePipe: DatePipe
+  ) {
     this.visitorForm = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.email]],
@@ -47,7 +52,7 @@ export class VisitorsComponent implements OnInit {
 
     const visitorData = {
       ...this.visitorForm.getRawValue(),
-      submittedAt: new Date().toLocaleString()
+      submittedAt: this.datePipe.transform(new Date(), 'dd-MM-yyyy HH:mm:ss')
     };
 
     const existing =

@@ -1,0 +1,85 @@
+<div class="admin-layout">
+
+  <!-- TOP BAR -->
+  <header class="admin-topbar">
+    <div class="admin-brand">
+      🧪 <span>Shivangel Admin Dashboard</span>
+    </div>
+
+    <div class="admin-actions">
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="admin-content">
+
+    <!-- KPI CARDS -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-icon">👥</div>
+        <div>
+          <h3>{{ visitors.length }}</h3>
+          <p>Total Visitors</p>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon">📅</div>
+        <div>
+          <h3>{{ todayCount }}</h3>
+          <p>Today’s Visitors</p>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon">📥</div>
+        <div>
+          <h3>{{ visitors.length > 0 ? 'Active' : '—' }}</h3>
+          <p>Data Status</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLE HEADER -->
+    <div class="table-header">
+      <h2>Visitor Records</h2>
+
+      <div class="table-actions">
+        <button (click)="exportToExcel()">⬇ Export</button>
+        <button class="danger" (click)="clearAll()">🗑 Clear</button>
+      </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrapper" *ngIf="visitors.length; else empty">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Purpose</th>
+            <th>Message</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of visitors">
+            <td>{{ v.fullName }}</td>
+            <td>{{ v.phone }}</td>
+            <td>{{ v.email || '-' }}</td>
+            <td>{{ v.purpose }}</td>
+            <td>{{ v.message }}</td>
+            <td>{{ v.submittedAt }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #empty>
+      <p class="empty-state">No visitor data available.</p>
+    </ng-template>
+
+  </main>
+</div>
